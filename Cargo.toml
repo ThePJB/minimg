@@ -7,5 +7,5 @@ description = "A mini image library"
 repository = "https://github.com/ThePJB/minimg"
 
 [dependencies]
-minvect = "0.1.0"
+minvect = "0.1.1"
 png = "0.17.10"
