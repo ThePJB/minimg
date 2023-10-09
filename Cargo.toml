@@ -1,0 +1,11 @@
+[package]
+name = "minimg"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "A mini image library"
+repository = "https://github.com/ThePJB/minimg"
+
+[dependencies]
+minvect = "0.1.0"
+png = "0.17.10"
