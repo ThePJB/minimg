@@ -1,6 +1,7 @@
 use std::path::Path;
 use std::fs::File;
 use std::io::BufWriter;
+use std::f32::consts::PI;
 use minvect::*;
 
 pub struct ImageBuffer {
@@ -73,14 +74,14 @@ impl ImageBuffer {
         let mut p = vec2(p1.x * self.w as f32, p1.y * self.h as f32);
         let p_dst = vec2(p2.x * self.w as f32, p2.y * self.h as f32);
         let u = p_dst - p;
-        let d_final = u.magnitude();
+        let d_final = u.dot(u).sqrt();
         let mut d = 0.0;
         let dir = u.normalize();
 
         while d < d_final {
             self.set_square(p.x as usize, p.y as usize, r, colour);
             p += dir;
-            d += dir.magnitude();
+            d += dir.dot(dir).sqrt();
         }
     }
     pub fn circle(&mut self, x: usize, y: usize, r: usize, rr: usize, colour: Vec4) {
