@@ -143,8 +143,7 @@ impl ImageBuffer {
         }
     }
 
-    pub fn dump_to_file(&self, path: &str) {
-        let path = Path::new(path);
+    pub fn save(&self, path: &Path) {
         let file = File::create(path).unwrap();
         let ref mut buf_writer = BufWriter::new(file);
 
@@ -172,7 +171,7 @@ pub fn test_line_drawing() {
     let mut buf = ImageBuffer::new(1000, 1000);
     buf.line_absolute(vec2(0.1, 0.1), vec2(0.9, 0.9), vec4(1.0, 0.0, 0.0, 1.0), 3);
     buf.line_absolute(vec2(0.5, 0.5), vec2(0.1, 0.9), vec4(0.0, 0.0, 1.0, 1.0), 5);
-    buf.dump_to_file("test.png");
+    buf.save(&Path::new("test.png"));
 }
 
 #[test]
@@ -180,7 +179,7 @@ pub fn test_plot() {
     let mut buf = ImageBuffer::new(1000, 1000);
     buf.fill(vec4(1.0, 1.0, 1.0, 1.0));
     buf.plot(&vec![-2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0, 3.0, 2.0, 10.0, 3.0], vec4(1.0, 0.0, 0.0, 1.0), 2);
-    buf.dump_to_file("test.png");
+    buf.save(&Path::new("test.png"));
 }
 
 #[test]
@@ -198,7 +197,7 @@ pub fn test_circle() {
     let tv = vec3(0.0, 0.4, 0.5);
     let tw = vec3(0.0, 0.0, 1.0);
     buf.circle_absolute_transform(vec2(0.0, 0.0), tu, tv, tw, 1.0, 2, vec4(0.0, 1.0, 0.0, 1.0));
-    buf.dump_to_file("test.png");
+    buf.save(&Path::new("test.png"));
 }
 
 #[test]
