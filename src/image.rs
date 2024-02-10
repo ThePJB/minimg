@@ -76,7 +76,7 @@ impl ImageBuffer {
         let u = p_dst - p;
         let d_final = u.dot(u).sqrt();
         let mut d = 0.0;
-        let dir = u.normalize();
+        let dir = u.unit().unwrap_or(vec2(0.0, 0.0));
 
         while d < d_final {
             self.set_square(p.x as usize, p.y as usize, r, colour);
